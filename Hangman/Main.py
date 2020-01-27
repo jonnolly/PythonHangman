@@ -2,8 +2,18 @@
 # Main game loop
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-import GameData
+from GameData import GameData
+from ConfigReader import ConfigReader
 from Display import Display
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Initialize all data for a new game of Hangman
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def setupNewGame():
+    print(ConfigReader.GetHangmanLogo())
+    newWord = ConfigReader.GetRandomWord()
+    initialNumberOfLives = ConfigReader.GetConfigField('INITIAL_NUMBER_OF_LIVES')
+    GameData.InitialiseGameData(newWord, initialNumberOfLives)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Request user to play again. 
@@ -11,7 +21,7 @@ from Display import Display
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def playAgain(isPlayAgain):
     if(isPlayAgain):
-        GameData.InitialiseGame()
+        setupNewGame()
         return MainGameLoop()
     else:
         exit()
@@ -22,19 +32,22 @@ def MainGameLoop():
         numberOfLives = GameData.GetNumberOfLives()
         guessedLetters = GameData.GetGuessedLetters()
         currentWord = GameData.GetCurrentWord()
-        
-        if numberOfLives == 0:
-            return playAgain(Display.DisplayGameOverScreen())
 
         # get masked word to be displayed on the screen
         displayedWord = Display.MaskWord(currentWord, guessedLetters)
 
-        # has the word been completely uncovered?
-        if displayedWord.count('_') is 0:
-            return playAgain(Display.DisplaySuccessScreen())
-
         # print new updated screen
-        Display.DisplayGameScreen(numberOfLives, guessedLetters, displayedWord)
+        Display.DisplayGameScreen(ConfigReader.GetHangmanLogo(), ConfigReader.GetHangmanStageIcon(numberOfLives), numberOfLives, guessedLetters, displayedWord)
+        
+        # check if game over
+        if numberOfLives == 0:
+            gameOverLogo = ConfigReader.GetGameOverIcon()
+            return playAgain(Display.DisplayGameOverScreen(gameOverLogo))
+
+        # check if success
+        if displayedWord.count('_') is 0:
+            successLogo = ConfigReader.GetSuccessIcon()
+            return playAgain(Display.DisplaySuccessScreen(successLogo))
 
         # ask for letter guess from user
         guessedLetter = Display.RequestLetter(guessedLetters)
@@ -46,6 +59,7 @@ def MainGameLoop():
         # add to guesses
         GameData.AddGuessedLetter(guessedLetter)
 
-print("Welcome to hangman.")
-GameData.InitialiseGame()
+setupNewGame()
+
+# Start Game
 MainGameLoop()

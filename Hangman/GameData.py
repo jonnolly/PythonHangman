@@ -2,7 +2,6 @@
 # Class responsible for game state
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-import ConfigReader
 import re
 import json
 
@@ -27,15 +26,15 @@ class GameData:
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Reads values from config
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    def InitialiseGame():
+    def InitialiseGameData(newWord, initialNumberOfLives):
 
         # generate random word from available words
         global CURRENT_WORD
-        CURRENT_WORD = ConfigReader.GetRandomWord()
+        CURRENT_WORD = newWord
 
         # get default initial number of lives
         global NUMBER_OF_LIVES
-        NUMBER_OF_LIVES = ConfigReader.GetConfigField('INITIAL_NUMBER_OF_LIVES')
+        NUMBER_OF_LIVES = initialNumberOfLives
 
         global GUESSED_LETTERS
         GUESSED_LETTERS = ''

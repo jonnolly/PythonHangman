@@ -1,1 +1,7 @@
-{"WORDS": ["3dhubs", "marvin", "print", "filament", "order", "layer"], "INITIAL_NUMBER_OF_LIVES": 5}
+{"WORDS": ["3dhubs", "marvin", "print", "filament", "order", "layer"],
+"INITIAL_NUMBER_OF_LIVES": 5,
+"HANGMAN_LOGO_FILE":"./icons/hangmanLogo.txt",
+"GAMEOVER_LOGO_FILE":"./icons/gameOverLogo.txt",
+"SUCCESS_LOGO_FILE":"./icons/successLogo.txt",
+"HANGMAN_ICONS_DIRECTORY":"./icons/HangmanStageIcons"
+}

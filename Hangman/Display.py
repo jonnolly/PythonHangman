@@ -2,7 +2,7 @@
 # Class responsible for the display
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-import GameData
+from GameData import GameData
 import re
 import sys
 
@@ -11,8 +11,11 @@ class Display:
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Display primary hangman screen
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    def DisplayGameScreen(numberOfLives, guessedLetters, maskedWord):
-        print("\n\n\n\nLIVES: " + str(numberOfLives) + "\tGuessed Letters: " + guessedLetters + '\n\n\t' + maskedWord)
+    def DisplayGameScreen(mainLogo, stageLogo, numberOfLives, guessedLetters, maskedWord):
+        print('\n' * 40)
+        print(mainLogo)
+        print(stageLogo)
+        print("\n\nLIVES: " + str(numberOfLives) + "\tGuessed Letters: " + guessedLetters + '\n\n\t' + maskedWord)
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Display generic play again y/n selection screen
@@ -30,15 +33,15 @@ class Display:
     # Display game over screen
     # Returns a bool corresponding to 'play again'
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    def DisplayGameOverScreen():
-        return Display.PlayAgainScreen('GAME OVER! Play again? y/n')
+    def DisplayGameOverScreen(gameOverLogo):
+        return Display.PlayAgainScreen(gameOverLogo + '\n\n Play again? y/n')
     
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Display success screen
     # Returns a bool corresponding to 'play again'
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    def DisplaySuccessScreen():
-        return Display.PlayAgainScreen('SUCCESS! Play again? y/n')
+    def DisplaySuccessScreen(successLogo):
+        return Display.PlayAgainScreen(successLogo + '\n\n Play again? y/n')
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # Ask the user for their guessed letter

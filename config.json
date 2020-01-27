@@ -1,0 +1,4 @@
+{"WORDS": ["3dhubs", "marvin", "print", "filament", "order", "layer"],
+"INITIAL_NUMBER_OF_LIVES": 5,
+"HANGMAN_LOGO_FILE":"./hangmanLogo.txt"}
+}
