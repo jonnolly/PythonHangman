@@ -52,6 +52,7 @@ def MainGameLoop():
         # ask for letter guess from user
         guessedLetter = Display.RequestLetter(guessedLetters)
 
+
         # check if letter is correct
         if(guessedLetter not in currentWord):
             GameData.DecreaseLives()
