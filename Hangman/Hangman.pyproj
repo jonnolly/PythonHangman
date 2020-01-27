@@ -22,10 +22,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Display.py" />
-    <Compile Include="Reader.py">
+    <Compile Include="ConfigReader.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Writer.py">
+    <Compile Include="GameData.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
